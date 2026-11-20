@@ -1,6 +1,6 @@
 # Politique de confidentialité de Central
 
-_Version bêta 1.1 — dernière mise à jour : 20 novembre 2026_
+_Version bêta 1.2 — dernière mise à jour : 20 novembre 2026_
 
 Central est actuellement en **version bêta**. Cette politique décrit l'application telle qu'elle est distribuée aujourd'hui. Elle sera mise à jour à mesure que le service évolue, notamment à l'ouverture de nouvelles fonctions et lors de la création de la structure juridique qui exploitera Central.
 
@@ -36,6 +36,8 @@ Les accès sensibles du téléphone (contacts, position, micro, appareil photo, 
 ### 2.4 Activités
 Si vous créez une activité (Bar, Commerce, Flotte, Hôtel, Immobilier) : son nom, son adresse et son logo si vous les renseignez, puis les informations que vous y gérez (membres, biens, réservations, locations, ventes). Vous êtes responsable des données de tiers que vous y enregistrez. Pour rejoindre une activité, vous pouvez scanner un code QR avec l'appareil photo.
 
+Pour une activité Bar ou Commerce, le catalogue public et son code QR rendent visibles de toute personne qui les consulte, sans compte Central, le nom de l'activité et son catalogue (produits et prix).
+
 ### 2.5 Cosam : ouverture d'un compte de paiement
 Ouvrir un compte en euros demande de vérifier votre identité. Les informations suivantes vous sont demandées, puis transmises à notre partenaire bancaire Swan, qui tient le compte :
 - Identité : prénom(s), nom, date, pays, ville et code postal de naissance, nationalité.
@@ -44,6 +46,17 @@ Ouvrir un compte en euros demande de vérifier votre identité. Les informations
 - Vérification d'identité : elle se fait sur une page sécurisée de Swan, qui recueille directement votre pièce d'identité et, le cas échéant, un selfie, et rend la décision. Central conserve le statut de cette vérification.
 - Justificatifs : si Swan en réclame un, vous pouvez le photographier ou l'importer (JPG, PNG, HEIC, PDF) ; Central le transmet à Swan.
 - Code de paiement : il protège vos opérations. Central n'en conserve qu'une empreinte cryptographique (HMAC-SHA256), jamais le code lui-même.
+
+### 2.5 bis Cosam : utilisation du compte activé
+Une fois votre compte activé, Central traite :
+- votre solde et l'historique de vos opérations ;
+- vos bénéficiaires (nom et IBAN pour un virement, numéro de téléphone pour un envoi Mobile Money) ;
+- l'IBAN de votre compte, tenu par Swan ;
+- vos transferts et paiements (montant, devise, bénéficiaire, motif, date, statut) et les reçus correspondants.
+
+Recharges et envois :
+- **Recharge par carte bancaire** : elle passe par Stripe. Votre numéro de carte est saisi dans le formulaire sécurisé de Stripe ; Central ne le reçoit ni ne le conserve. Central transmet à Stripe le montant de la recharge.
+- **Recharge et envoi par Mobile Money** : ils passent par pawaPay. Central lui transmet le numéro de téléphone Mobile Money (le vôtre ou celui du bénéficiaire), le montant et la devise. pawaPay les transmet à l'opérateur Mobile Money du pays concerné (Bénin, Burkina Faso, Cameroun, Congo, Côte d'Ivoire, Gabon, Sénégal).
 
 ### 2.6 Contacts du téléphone (Coz)
 Si vous l'autorisez, Coz lit les numéros de votre carnet d'adresses et les envoie à nos serveurs pour savoir lesquels correspondent à un compte Central. Le serveur ne renvoie que les numéros trouvés et ne conserve pas votre carnet. Les noms de vos contacts ne sont pas envoyés. Le bouton « Inviter » ouvre votre application SMS : rien ne passe par nos serveurs.
@@ -74,7 +87,8 @@ Si vous les acceptez, un identifiant de notification de votre appareil est enreg
 | Retrouver vos contacts déjà sur Central | Numéros du carnet | Consentement (permission du téléphone), retirable à tout moment |
 | Partager votre position dans une discussion | Latitude / longitude | Consentement (permission et geste explicite) |
 | Ouvrir un compte de paiement | Identité, coordonnées, situation, justificatifs | Exécution du contrat (mesures précontractuelles) |
-| Vérification d'identité et lutte contre le blanchiment | Identité, justificatifs | Obligation légale (Code monétaire et financier) |
+| Tenir le compte, exécuter les transferts, recharges et envois, émettre les reçus | Solde, opérations, bénéficiaires, IBAN, numéros Mobile Money | Exécution du contrat |
+| Vérification d'identité et lutte contre le blanchiment | Identité, justificatifs, opérations | Obligation légale (Code monétaire et financier) |
 | Vous envoyer des notifications | Identifiant de notification | Consentement (autorisation du téléphone) |
 | Sécurité, prévention des abus et de la fraude | Adresse IP, journaux, appareils | Intérêt légitime (protéger le service et ses utilisateurs) |
 | Répondre à vos demandes | E-mail, contenu de la demande | Exécution du contrat / intérêt légitime |
@@ -88,15 +102,19 @@ Vos données ne sont accessibles qu'aux personnes de Central qui en ont besoin, 
 | Amazon Web Services (AWS) | Hébergement des serveurs, de la base de données et des fichiers | Toutes les données du service | Union européenne (Paris) |
 | Google (Firebase Authentication avec reCAPTCHA, Firebase Cloud Messaging, serveur STUN) | Vérification du numéro par SMS, notifications, établissement des appels | Téléphone, identifiant de notification, adresse IP, données techniques du navigateur pour reCAPTCHA | Monde, dont États-Unis |
 | Apple (Apple Push Notification service) | Acheminement des notifications sur iPhone | Identifiant de notification, contenu de la notification | Monde, dont États-Unis |
-| Swan (établissement de monnaie électronique agréé, France) | Compte de paiement en euros et vérification d'identité | Identité, coordonnées, situation, justificatifs | Union européenne |
+| Swan (établissement de monnaie électronique agréé, France) | Compte de paiement en euros, IBAN, virements et vérification d'identité | Identité, coordonnées, situation, justificatifs, opérations | Union européenne |
+| Stripe | Recharge du compte par carte bancaire | Données de carte (saisies chez Stripe), montant | Union européenne et États-Unis |
+| pawaPay | Recharges et envois par Mobile Money | Numéro Mobile Money, montant, devise | Royaume-Uni, et pays de l'opérateur Mobile Money concerné (Afrique) |
 
-Swan agit, pour ses propres obligations réglementaires (vérification d'identité, lutte contre le blanchiment), en tant que **responsable de traitement distinct** ; sa politique de confidentialité s'applique en complément de celle-ci. Les éditeurs de presse dont vous lisez les articles traitent les données de leur propre site sous leur seule responsabilité.
+Swan et Stripe agissent, pour leurs propres obligations réglementaires (vérification d'identité, lutte contre le blanchiment, prévention de la fraude), en tant que **responsables de traitement distincts** ; leurs politiques de confidentialité s'appliquent en complément de celle-ci. Les éditeurs de presse dont vous lisez les articles traitent les données de leur propre site sous leur seule responsabilité.
 
 Chacun de ces prestataires encadre le traitement des données qui lui sont confiées par ses propres engagements contractuels de protection des données, publiés dans ses conditions de service. Nous pouvons aussi communiquer des données aux autorités lorsque la loi l'impose.
 
 ## 5. Transferts hors de l'Union européenne
 
-Google et Apple peuvent traiter des données aux États-Unis. Ces transferts sont encadrés par les garanties qu'offre chaque prestataire : son adhésion au Data Privacy Framework UE–États-Unis lorsqu'elle existe, ou les clauses contractuelles types adoptées par la Commission européenne, prévues dans ses conditions de traitement des données.
+Google, Apple et Stripe peuvent traiter des données aux États-Unis. Ces transferts sont encadrés par les garanties qu'offre chaque prestataire : son adhésion au Data Privacy Framework UE–États-Unis lorsqu'elle existe, ou les clauses contractuelles types adoptées par la Commission européenne, prévues dans ses conditions de traitement des données.
+
+Les transferts vers pawaPay, au Royaume-Uni, s'appuient sur la décision d'adéquation de la Commission européenne pour le Royaume-Uni. Lorsque vous rechargez votre compte ou envoyez de l'argent par Mobile Money, les données nécessaires à l'opération (numéro de téléphone, montant, devise) sont transmises à l'opérateur Mobile Money du pays concerné, en Afrique ; ce transfert est nécessaire à l'exécution de l'opération que vous demandez (RGPD, art. 49.1.b).
 
 ## 6. Durées de conservation
 
@@ -106,7 +124,7 @@ Google et Apple peuvent traiter des données aux États-Unis. Ces transferts son
 | Messages, médias et historique d'appels | Pendant toute la durée du compte, ou jusqu'à leur suppression par l'utilisateur |
 | Statuts Coz | 24 heures de visibilité |
 | Mesures de lecture | Pendant toute la durée du compte |
-| Identité, vérification et données d'ouverture de compte de paiement | 5 ans après la fin de la relation (obligation légale de lutte contre le blanchiment) |
+| Identité, vérification, données d'ouverture de compte de paiement et opérations financières | 5 ans après la fin de la relation (obligation légale de lutte contre le blanchiment) |
 | Pièces comptables | 10 ans (Code de commerce) |
 | Identifiants de notification | Jusqu'à la déconnexion de l'appareil ou l'expiration de l'identifiant |
 | Adresses IP de limitation des abus | Quelques minutes (fenêtre de limitation) |
@@ -146,4 +164,4 @@ Central est réservé aux personnes âgées d'au moins **18 ans**, en raison de 
 
 ## 10. Modifications
 
-Cette politique sera mise à jour lorsque de nouvelles fonctions ouvriront (notamment les paiements, recharges et cartes de Cosam). La date en tête de page indique la dernière version. En cas de changement important, nous vous en informerons dans l'application.
+Cette politique sera mise à jour lorsque de nouvelles fonctions ouvriront. La date en tête de page indique la dernière version. En cas de changement important, nous vous en informerons dans l'application.
