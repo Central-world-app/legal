@@ -1,6 +1,6 @@
 # Politique de confidentialité de Central
 
-_Version bêta 1.2 — dernière mise à jour : 20 novembre 2026_
+_Version bêta 1.3 — dernière mise à jour : 21 novembre 2026_
 
 Central est actuellement en **version bêta**. Cette politique décrit l'application telle qu'elle est distribuée aujourd'hui. Elle sera mise à jour à mesure que le service évolue, notamment à l'ouverture de nouvelles fonctions et lors de la création de la structure juridique qui exploitera Central.
 
@@ -64,7 +64,7 @@ Si vous l'autorisez, Coz lit les numéros de votre carnet d'adresses et les envo
 ### 2.7 Messagerie et appels (Coz)
 - Vos messages, notes vocales, photos, vidéos, documents et statuts (visibles 24 heures), ainsi que les informations de vos groupes. **Les messages ne sont pas chiffrés de bout en bout** : ils sont chiffrés pendant le transport et stockés sur nos serveurs pour être remis à vos correspondants.
 - Appels audio et vidéo : la communication passe directement entre les appareils. **Aucun appel n'est enregistré.** Pour établir la connexion, votre appareil interroge un serveur STUN de Google, qui voit votre adresse IP. L'historique de vos appels (date, correspondant, durée) est conservé pour l'onglet Appels.
-- Position : seulement quand vous choisissez de la partager dans une discussion ; un point unique (latitude, longitude), sans suivi continu.
+- Position : seulement quand vous choisissez de la partager dans une discussion ; un point unique (latitude, longitude), sans suivi continu. Pour afficher l'aperçu de carte et l'adresse d'une position partagée, l'application transmet ce point au service de cartes du téléphone : **Apple** (Plans / MapKit) sur iPhone, **Google** (Google Maps) sur Android. Ce service ne reçoit ni votre nom ni le contenu de la discussion.
 - Réglages : présence (« en ligne » et « vu à »), confidentialité avancée, personnes bloquées.
 - Discussions verrouillées : la reconnaissance Face ID / empreinte a lieu sur votre appareil ; rien n'est transmis.
 
@@ -102,6 +102,8 @@ Vos données ne sont accessibles qu'aux personnes de Central qui en ont besoin, 
 | Amazon Web Services (AWS) | Hébergement des serveurs, de la base de données et des fichiers | Toutes les données du service | Union européenne (Paris) |
 | Google (Firebase Authentication avec reCAPTCHA, Firebase Cloud Messaging, serveur STUN) | Vérification du numéro par SMS, notifications, établissement des appels | Téléphone, identifiant de notification, adresse IP, données techniques du navigateur pour reCAPTCHA | Monde, dont États-Unis |
 | Apple (Apple Push Notification service) | Acheminement des notifications sur iPhone | Identifiant de notification, contenu de la notification | Monde, dont États-Unis |
+| Apple (Plans / MapKit) — sur iPhone | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
+| Google (Google Maps : Maps SDK, géocodage) — sur Android | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
 | Swan (établissement de monnaie électronique agréé, France) | Compte de paiement en euros, IBAN, virements et vérification d'identité | Identité, coordonnées, situation, justificatifs, opérations | Union européenne |
 | Stripe | Recharge du compte par carte bancaire | Données de carte (saisies chez Stripe), montant | Union européenne et États-Unis |
 | pawaPay | Recharges et envois par Mobile Money | Numéro Mobile Money, montant, devise | Royaume-Uni, et pays de l'opérateur Mobile Money concerné (Afrique) |
