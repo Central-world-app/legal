@@ -1,6 +1,6 @@
 # Politique de confidentialité de Central
 
-_Version bêta 1.3 — dernière mise à jour : 21 novembre 2026_
+_Version bêta 1.4 — dernière mise à jour : 22 novembre 2026_
 
 Central est actuellement en **version bêta**. Cette politique décrit l'application telle qu'elle est distribuée aujourd'hui. Elle sera mise à jour à mesure que le service évolue, notamment à l'ouverture de nouvelles fonctions et lors de la création de la structure juridique qui exploitera Central.
 
@@ -61,9 +61,13 @@ Recharges et envois :
 ### 2.6 Contacts du téléphone (Coz)
 Si vous l'autorisez, Coz lit les numéros de votre carnet d'adresses et les envoie à nos serveurs pour savoir lesquels correspondent à un compte Central. Le serveur ne renvoie que les numéros trouvés et ne conserve pas votre carnet. Les noms de vos contacts ne sont pas envoyés. Le bouton « Inviter » ouvre votre application SMS : rien ne passe par nos serveurs.
 
+Pour déterminer qui peut voir vos statuts, Central conserve uniquement les correspondances entre comptes Central issues de la synchronisation de votre carnet : « vous avez ce compte Central dans vos contacts ». Nous ne conservons ni les numéros de votre carnet qui ne correspondent à aucun compte, ni les noms que vous donnez à vos contacts. Vos statuts sont visibles par les personnes avec qui vous êtes contacts mutuels (chacun a le numéro de l'autre dans son carnet) et par celles à qui vous avez déjà écrit en message privé ; une personne que vous avez bloquée ne les voit jamais. Ces correspondances sont mises à jour à chaque synchronisation (un contact retiré de votre carnet en disparaît), supprimées quand l'un des deux comptes change de numéro, et effacées dans les deux sens lors de la suppression de votre compte.
+
+Dans Coz, votre numéro de téléphone est visible par les personnes à qui vous avez écrit en message privé. Il n'est jamais montré à quelqu'un qui vous a seulement ouvert une discussion, ni à une personne bloquée. Le nom de vos contacts tel qu'il figure dans le carnet de votre téléphone est lu sur l'appareil pour l'affichage et n'est jamais envoyé à Central.
+
 ### 2.7 Messagerie et appels (Coz)
 - Vos messages, notes vocales, photos, vidéos, documents et statuts (visibles 24 heures), ainsi que les informations de vos groupes. **Les messages ne sont pas chiffrés de bout en bout** : ils sont chiffrés pendant le transport et stockés sur nos serveurs pour être remis à vos correspondants.
-- Appels audio et vidéo : la communication passe directement entre les appareils. **Aucun appel n'est enregistré.** Pour établir la connexion, votre appareil interroge un serveur STUN de Google, qui voit votre adresse IP. L'historique de vos appels (date, correspondant, durée) est conservé pour l'onglet Appels.
+- Appels audio et vidéo : la communication passe directement entre les appareils quand le réseau le permet. Sinon — c'est fréquent sur les réseaux mobiles — elle passe par un serveur relais de Central, hébergé chez AWS à Paris. Le son et l’image restent chiffrés entre les deux appareils : le relais les transporte sans pouvoir les lire, et **aucun appel n'est enregistré.** Pour établir la connexion, votre appareil interroge un serveur de Central, qui voit votre adresse IP ; les identifiants qui ouvrent le relais sont créés pour chaque appel et expirent au bout de deux heures. Si ce serveur ne répond pas, l'application se rabat sur un serveur STUN de Google, qui voit alors votre adresse IP. Pour diagnostiquer la qualité des appels, nous enregistrons si un appel est passé en direct ou par le relais, sans adresse IP. L'historique de vos appels (date, correspondant, durée) est conservé pour l'onglet Appels.
 - Position : seulement quand vous choisissez de la partager dans une discussion ; un point unique (latitude, longitude), sans suivi continu. Pour afficher l'aperçu de carte et l'adresse d'une position partagée, l'application transmet ce point au service de cartes du téléphone : **Apple** (Plans / MapKit) sur iPhone, **Google** (Google Maps) sur Android. Ce service ne reçoit ni votre nom ni le contenu de la discussion.
 - Réglages : présence (« en ligne » et « vu à »), confidentialité avancée, personnes bloquées.
 - Discussions verrouillées : la reconnaissance Face ID / empreinte a lieu sur votre appareil ; rien n'est transmis.
@@ -85,6 +89,7 @@ Si vous les acceptez, un identifiant de notification de votre appareil est enreg
 | Fournir les actualités, la messagerie, les appels et les activités | Profil, contenus, messages, médias, données d'activité | Exécution du contrat |
 | Ordonner votre fil d'actualités | Centres d'intérêt, mesures de lecture | Intérêt légitime (proposer un fil pertinent) ; vous pouvez ajuster vos centres d'intérêt à tout moment |
 | Retrouver vos contacts déjà sur Central | Numéros du carnet | Consentement (permission du téléphone), retirable à tout moment |
+| Choisir qui peut voir vos statuts | Correspondances entre comptes Central issues de votre carnet | Consentement (permission d'accès aux contacts), retirable à tout moment |
 | Partager votre position dans une discussion | Latitude / longitude | Consentement (permission et geste explicite) |
 | Ouvrir un compte de paiement | Identité, coordonnées, situation, justificatifs | Exécution du contrat (mesures précontractuelles) |
 | Tenir le compte, exécuter les transferts, recharges et envois, émettre les reçus | Solde, opérations, bénéficiaires, IBAN, numéros Mobile Money | Exécution du contrat |
@@ -100,7 +105,7 @@ Vos données ne sont accessibles qu'aux personnes de Central qui en ont besoin, 
 | Prestataire | Rôle | Données concernées | Localisation |
 |---|---|---|---|
 | Amazon Web Services (AWS) | Hébergement des serveurs, de la base de données et des fichiers | Toutes les données du service | Union européenne (Paris) |
-| Google (Firebase Authentication avec reCAPTCHA, Firebase Cloud Messaging, serveur STUN) | Vérification du numéro par SMS, notifications, établissement des appels | Téléphone, identifiant de notification, adresse IP, données techniques du navigateur pour reCAPTCHA | Monde, dont États-Unis |
+| Google (Firebase Authentication avec reCAPTCHA, Firebase Cloud Messaging, serveur STUN de secours) | Vérification du numéro par SMS, notifications, établissement des appels en secours seulement | Téléphone, identifiant de notification, adresse IP, données techniques du navigateur pour reCAPTCHA | Monde, dont États-Unis |
 | Apple (Apple Push Notification service) | Acheminement des notifications sur iPhone | Identifiant de notification, contenu de la notification | Monde, dont États-Unis |
 | Apple (Plans / MapKit) — sur iPhone | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
 | Google (Google Maps : Maps SDK, géocodage) — sur Android | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
@@ -132,6 +137,7 @@ Les transferts vers pawaPay, au Royaume-Uni, s'appuient sur la décision d'adéq
 | Adresses IP de limitation des abus | Quelques minutes (fenêtre de limitation) |
 | Journaux techniques | 12 mois au maximum |
 | Numéros du carnet envoyés pour rapprochement | Non conservés : comparés aux comptes existants puis écartés une fois la réponse rendue |
+| Correspondances de carnet (statuts) | Tant que le contact figure dans votre carnet ; supprimées à la suppression du compte |
 
 ## 7. Sécurité
 
