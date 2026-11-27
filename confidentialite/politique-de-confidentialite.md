@@ -1,6 +1,6 @@
 # Politique de confidentialité de Central
 
-_Version bêta 1.4 — dernière mise à jour : 22 novembre 2026_
+_Version bêta 1.5 — dernière mise à jour : 27 novembre 2026_
 
 Central est actuellement en **version bêta**. Cette politique décrit l'application telle qu'elle est distribuée aujourd'hui. Elle sera mise à jour à mesure que le service évolue, notamment à l'ouverture de nouvelles fonctions et lors de la création de la structure juridique qui exploitera Central.
 
@@ -73,13 +73,20 @@ Dans Coz, votre numéro de téléphone est visible par les personnes à qui vous
 - Discussions verrouillées : la reconnaissance Face ID / empreinte a lieu sur votre appareil ; rien n'est transmis.
 
 ### 2.8 Notifications
-Si vous les acceptez, un identifiant de notification de votre appareil est enregistré pour vous prévenir des nouveaux messages. Il est retiré à la déconnexion.
+Si vous acceptez les notifications, un identifiant de notification est enregistré pour vous prévenir ; si vous les refusez, il n'est pas enregistré. Sur iPhone, pour vous permettre de recevoir les appels dans Coz, un identifiant d'appel est enregistré dès la connexion. Sur Android, les appels utilisent l'identifiant de notification : si vous refusez les notifications, les appels ne pourront pas sonner lorsque l'application est fermée. Ces identifiants sont retirés à la déconnexion.
 
 ### 2.9 Données techniques
 - Type d'appareil (mobile) et date de connexion de chaque session.
 - Adresse IP : utilisée de façon transitoire pour limiter les abus (limitation du nombre de requêtes) et par nos journaux techniques de sécurité.
 
-**Ce que Central ne fait pas :** aucun outil de mesure d'audience, de publicité ciblée ou de rapport de plantage tiers n'est intégré à l'application, et vos données ne sont pas vendues.
+### 2.10 Mesure d'activité de l'application
+Pour savoir combien de personnes utilisent Central et quelles parties de l'application leur servent, l'application nous indique, au plus une fois par heure lorsqu'elle est ouverte, la plateforme de votre téléphone (iPhone ou Android), la version de l'application, la rubrique ouverte (Cosam, Coz, Activités, Infos ou Profil) et le pays de votre compte, rattachés à votre compte et à un identifiant d'installation tiré au hasard.
+
+- Nous n'enregistrons ni le contenu de vos messages ou de vos opérations, ni votre position, ni votre adresse IP.
+- Ces informations servent uniquement à établir des statistiques globales, présentées à notre équipe sans nom ni numéro, et sans aucun chiffre qui concernerait moins de cinq personnes.
+- Le détail est supprimé au bout de 13 mois ; seuls des totaux quotidiens, qui ne permettent d'identifier personne, sont conservés au-delà.
+
+**Ce que Central ne fait pas :** aucun outil tiers de mesure d'audience, de publicité ciblée ou de rapport de plantage n'est intégré à l'application, et vos données ne sont pas vendues. La mesure d'activité décrite ci-dessus est faite par Central lui-même, sur ses propres serveurs, et n'est transmise à aucun tiers, hormis notre hébergeur, qui agit uniquement pour notre compte.
 
 ## 3. Finalités et bases légales
 
@@ -97,6 +104,7 @@ Si vous les acceptez, un identifiant de notification de votre appareil est enreg
 | Vous envoyer des notifications | Identifiant de notification | Consentement (autorisation du téléphone) |
 | Sécurité, prévention des abus et de la fraude | Adresse IP, journaux, appareils | Intérêt légitime (protéger le service et ses utilisateurs) |
 | Répondre à vos demandes | E-mail, contenu de la demande | Exécution du contrat / intérêt légitime |
+| Établir des statistiques globales d'utilisation de l'application | Plateforme, version de l'application, rubrique ouverte, pays du compte, heure (au plus un signal par heure) | Intérêt légitime (connaître l'usage du service pour l'améliorer) |
 
 ## 4. Destinataires, sous-traitants et partenaires
 
@@ -106,11 +114,12 @@ Vos données ne sont accessibles qu'aux personnes de Central qui en ont besoin, 
 |---|---|---|---|
 | Amazon Web Services (AWS) | Hébergement des serveurs, de la base de données et des fichiers | Toutes les données du service | Union européenne (Paris) |
 | Google (Firebase Authentication avec reCAPTCHA, Firebase Cloud Messaging, serveur STUN de secours) | Vérification du numéro par SMS, notifications, établissement des appels en secours seulement | Téléphone, identifiant de notification, adresse IP, données techniques du navigateur pour reCAPTCHA | Monde, dont États-Unis |
-| Apple (Apple Push Notification service) | Acheminement des notifications sur iPhone | Identifiant de notification, contenu de la notification | Monde, dont États-Unis |
+| Apple (Apple Push Notification service) | Acheminement des notifications sur iPhone | Identifiant de notification, identifiant d'appel (iPhone), contenu de la notification | Monde, dont États-Unis |
 | Apple (Plans / MapKit) — sur iPhone | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
 | Google (Google Maps : Maps SDK, géocodage) — sur Android | Aperçu de carte et adresse d'une position partagée dans Coz | Coordonnées de la position partagée, adresse IP | Monde, dont États-Unis |
+| Google (ML Kit) | Lecture des QR codes sur Android | Données techniques de l'appareil et de performance | Monde, dont États-Unis |
 | Swan (établissement de monnaie électronique agréé, France) | Compte de paiement en euros, IBAN, virements et vérification d'identité | Identité, coordonnées, situation, justificatifs, opérations | Union européenne |
-| Stripe | Recharge du compte par carte bancaire | Données de carte (saisies chez Stripe), montant | Union européenne et États-Unis |
+| Stripe | Recharge du compte par carte bancaire | Données de carte, montant, et données techniques de l'appareil et d'utilisation de la page de paiement, à des fins de sécurité et de lutte contre la fraude | Union européenne et États-Unis |
 | pawaPay | Recharges et envois par Mobile Money | Numéro Mobile Money, montant, devise | Royaume-Uni, et pays de l'opérateur Mobile Money concerné (Afrique) |
 
 Swan et Stripe agissent, pour leurs propres obligations réglementaires (vérification d'identité, lutte contre le blanchiment, prévention de la fraude), en tant que **responsables de traitement distincts** ; leurs politiques de confidentialité s'appliquent en complément de celle-ci. Les éditeurs de presse dont vous lisez les articles traitent les données de leur propre site sous leur seule responsabilité.
@@ -136,6 +145,7 @@ Les transferts vers pawaPay, au Royaume-Uni, s'appuient sur la décision d'adéq
 | Identifiants de notification | Jusqu'à la déconnexion de l'appareil ou l'expiration de l'identifiant |
 | Adresses IP de limitation des abus | Quelques minutes (fenêtre de limitation) |
 | Journaux techniques | 12 mois au maximum |
+| Mesure d'activité de l'application (détail) | 13 mois, puis suppression ; seuls des totaux quotidiens sans aucune donnée personnelle sont conservés au-delà |
 | Numéros du carnet envoyés pour rapprochement | Non conservés : comparés aux comptes existants puis écartés une fois la réponse rendue |
 | Correspondances de carnet (statuts) | Tant que le contact figure dans votre carnet ; supprimées à la suppression du compte |
 
